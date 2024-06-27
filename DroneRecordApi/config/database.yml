@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['POSTGRES_USER'] || 'postgres' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || 'majo1234' %>
+  host: <%= ENV['POSTGRES_HOST'] || 'localhost' %>
+
+development:
+  <<: *default
+  database: drone-db
+  username: <%= ENV['POSTGRES_USER'] || 'postgres' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || 'majo1234' %>
+
+test:
+  <<: *default
+  database: drone-db-test
+  username: <%= ENV['POSTGRES_USER'] || 'postgres' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || 'majo1234' %>
+
+production:
+  <<: *default
+  url:  postgres://uta_postgres:D7bfa1QFNg2vW1mobJ9O4JPHkOVs9eED@dpg-cpdv2vlds78s73eo3dj0-a.oregon-postgres.render.com/drones_db_c3wl
+  database: drones_db_c3wl
+  username: uta_postgres
+  password:  D7bfa1QFNg2vW1mobJ9O4JPHkOVs9eED
